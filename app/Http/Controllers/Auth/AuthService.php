@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
+
 class AuthService
 {
     private $authQuery;
@@ -9,8 +11,19 @@ class AuthService
     {
         $this->authQuery = $authQuery;
     }
-    public function createUser($data){
-        return $this->authQuery->createUser($data);
+
+    public function login($data){
+
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password'] ])) {
+            return Auth::user();
+        }
+        else{
+            return response()->json([
+                'message' => "Invalid Creadentials.",
+            ],401);
+        }
     }
 
 }
+
+

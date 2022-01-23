@@ -36,7 +36,7 @@
                             </FormItem>
                             <p class="_forget"><router-link class="_1link" to="/forgetPassword">Forget password?</router-link></p>
                             <FormItem>
-                                <Button @click.native="login()" class="_log_btn" >Signin</Button>
+                                <Button :loading="isLoading" :disabled="isLoading" @click.native="login()" class="_log_btn" >Signin</Button>
                             </FormItem>
                         </Form>
                     </div>
@@ -63,7 +63,7 @@ export default {
             password: ''
         },
       isLoading:false,
-
+      reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
     }
   },
 

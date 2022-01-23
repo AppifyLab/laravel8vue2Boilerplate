@@ -43,13 +43,13 @@ class RouteServiceProvider extends ServiceProvider
 
             foreach ($allModuleFiles as $m) {
                 if(file_exists("$m/api.php")){
-                    Route::middleware('api')
+                    Route::middleware('web')
                         ->namespace($this->namespace)
                         ->group("$m/api.php");
                 }
 
             }
-            
+
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)

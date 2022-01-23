@@ -7,5 +7,10 @@ use App\Http\Controllers\Auth\AuthController;
 
 
 Route::prefix('auth')->group(function () {
-    Route::post('/createUser',  [AuthController::class, 'createUser']);
+    Route::post('/login',  [AuthController::class, 'login']);
+    Route::get('/logout',  [AuthController::class, 'logout']);
+});
+
+Route::group(['prefix'=>'auth','middleware'=>'auth'],function (){
+    Route::get('/authUser',  [AuthController::class, 'authUser']);
 });
